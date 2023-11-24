@@ -10,11 +10,11 @@ from pylsl import StreamInfo, StreamOutlet, local_clock
 
 
 def main(argv):
-    srate = 100
-    name = 'BioSemi'
-    type = 'EEG'
-    n_channels = 8
-    help_string = 'SendData.py -s <sampling_rate> -n <stream_name> -t <stream_type>'
+    srate = 200
+    name = 'OpenBCI'
+    type = 'EOG'
+    n_channels = 4
+    help_string = 'send_data.py -s <sampling_rate> -n <stream_name> -t <stream_type>'
     try:
         opts, args = getopt.getopt(argv, "hs:c:n:t:", longopts=["srate=", "channels=", "name=", "type"])
     except getopt.GetoptError:
@@ -57,7 +57,7 @@ def main(argv):
             outlet.push_sample(mysample)
         sent_samples += required_samples
         # now send it and wait for a bit before trying again.
-        time.sleep(0.01)
+        time.sleep(0.004)
 
 
 if __name__ == '__main__':
